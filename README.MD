@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # 🐇 Follow the White Rabbit
 
 > Daily journal prompts from Morpheus, delivered straight to your inbox.
@@ -119,3 +118,4 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 *"The answer is out there, Neo, and it's looking for you..."* - Morpheus
 EOF
+
