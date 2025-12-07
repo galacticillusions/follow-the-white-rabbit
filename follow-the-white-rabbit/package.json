@@ -1,0 +1,47 @@
+{
+  "name": "follow-the-white-rabbit",
+  "version": "1.0.0",
+  "description": "Email-based journaling with prompts from Morpheus",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start",
+    "deploy": "vercel --prod",
+    "lint": "eslint .",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "journaling",
+    "email",
+    "self-reflection",
+    "mindfulness",
+    "matrix",
+    "saas"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR-USERNAME/follow-the-white-rabbit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR-USERNAME/follow-the-white-rabbit/issues"
+  },
+  "homepage": "https://github.com/YOUR-USERNAME/follow-the-white-rabbit#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "@sendgrid/mail": "^8.1.0",
+    "@sendgrid/inbound-mail-parser": "^8.1.0",
+    "stripe": "^14.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0",
+    "eslint": "^8.50.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
