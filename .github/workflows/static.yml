@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow the White Rabbit - Daily Journal Prompts from Morpheus</title>
+    <meta name="description" content="Receive thought-provoking journal prompts from Morpheus delivered to your inbox. Start your journey of self-discovery today.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Lucida Console', monospace;
+            background: #000;
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        /* Matrix rain effect background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .rabbit-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 3vw, 24px);
+            margin-bottom: 40px;
+            color: #00cc00;
+            max-width: 700px;
+        }
+
+        /* Email Signup Form */
+        .signup-form {
+            background: #0a0a0a;
+            border: 3px solid #00ff00;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #00ff00;
+        }
+
+        input[type="email"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: #006600;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(180deg, #003300 0%, #001a00 100%);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(180deg, #004400 0%, #002200 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .trust-badge {
+            font-size: 12px;
+            color: #008800;
+            margin-top: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #000 0%, #001100 50%, #000 100%);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 60px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #00ff00;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #00cc00;
+        }
+
+        /* Sample Prompt Section */
+        .sample-prompt {
+            padding: 100px 20px;
+        }
+
+        .sample-prompt h2 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+
+        .email-preview {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            border: 3px solid #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .email-header {
+            background: linear-gradient(180deg, #003300 0%, #001a00 100%);
+            padding: 20px;
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .email-from {
+            font-size: 12px;
+            color: #00cc00;
+            margin-bottom: 10px;
+        }
+
+        .email-subject {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .email-body {
+            padding: 30px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #00dd00;
+        }
+
+        .email-signature {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #003300;
+            font-style: italic;
+            color: #00cc00;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #000 0%, #001100 50%, #000 100%);
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 60px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #00ff00;
+        }
+
+        .plan-price {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #00ff00;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: #00cc00;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: #00cc00;
+            border-bottom: 1px solid #003300;
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: #00ff00;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .plan-cta:hover {
+            background: #001a00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+        }
+
+        .featured .plan-cta {
+            background: linear-gradient(180deg, #003300 0%, #001a00 100%);
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 20px;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: clamp(28px, 5vw, 48px);
+            margin-bottom: 60px;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #0a0a0a;
+            border: 2px solid #00ff00;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #00ff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #001a00;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: #00cc00;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 2px solid #00ff00;
+            background: #000;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #006600;
+            margin-top: 20px;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #003300;
+            border: 2px solid #00ff00;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            animation: slideIn 0.5s;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signup-form {
+                padding: 25px;
+            }
+
+            .feature-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="rabbit-icon">🐇</div>
+            <h1>Follow the White Rabbit</h1>
+            <p class="subtitle">
+                Receive thought-provoking journal prompts from Morpheus, delivered to your inbox. 
+                Begin your journey of self-discovery today.
+            </p>
+            
+            <form class="signup-form" id="signupForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Neo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="neo@matrix.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="frequency">How often would you like prompts?</label>
+                    <select id="frequency" name="frequency">
+                        <option value="daily">Daily - Every morning</option>
+                        <option value="3x-week" selected>3x per week</option>
+                        <option value="weekly">Weekly - Every Monday</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="cta-button">
+                    Take the Red Pill
+                </button>
+                
+                <div class="success-message" id="successMessage">
+                    ✓ Welcome to the Matrix, Neo. Check your email.
+                </div>
+                
+                <p class="trust-badge">
+                    🔒 No spam. Unsubscribe anytime. Join 10,347+ journalers.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose the Red Pill?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <h3>Delivered to Your Inbox</h3>
+                    <p>No apps to download. Prompts arrive directly in your email when you need them most.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Reply to Reflect</h3>
+                    <p>Simply hit reply to journal. Your responses are automatically saved and organized.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Curated by Morpheus</h3>
+                    <p>Each prompt is designed to guide you deeper into self-awareness and growth.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Synced</h3>
+                    <p>Access your journal entries anytime from any device. Never lose your reflections.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Track Your Progress</h3>
+                    <p>Monthly summaries show your growth patterns and insights over time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Your Schedule</h3>
+                    <p>Choose daily, weekly, or custom delivery. Pause anytime when life gets busy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Prompt Section -->
+    <section class="sample-prompt">
+        <div class="container">
+            <h2>A Glimpse Down the Rabbit Hole</h2>
+            <div class="email-preview">
+                <div class="email-header">
+                    <div class="email-from">From: morpheus@thematrix.net</div>
+                    <div class="email-subject">Neo, what would your 12-year-old self think of you now?</div>
+                </div>
+                <div class="email-body">
+                    <p>Neo,</p>
+                    <p>I want you to journey back to when you were 12 years old. What did that younger version of you dream about? What kind of person did they think you would become?</p>
+                    <p>Now, looking at where you are today, what would that child think? What would make them proud? What might surprise them about the path you've taken?</p>
+                    <p>Write to your 12-year-old self, or listen to what they might say to you now.</p>
+                    <div class="email-signature">
+                        - Morpheus
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Choose Your Path</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Free Trial</div>
+                    <div class="plan-price">$0<span>/7 days</span></div>
+                    <ul class="plan-features">
+                        <li>1 prompt per week</li>
+                        <li>Reply via email</li>
+                        <li>Basic text emails</li>
+                        <li>7-day trial period</li>
+                    </ul>
+                    <button class="plan-cta" onclick="scrollToSignup()">Start Free Trial</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="plan-name">Rabbit Hole</div>
+                    <div class="plan-price">$7<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Daily prompts from Morpheus</li>
+                        <li>Reply-by-email journaling</li>
+                        <li>Beautiful HTML emails</li>
+                        <li>Cloud backup & sync</li>
+                        <li>Monthly reflection summaries</li>
+                        <li>Download as PDF</li>
+                    </ul>
+                    <button class="plan-cta" onclick="scrollToSignup()">Take the Red Pill</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="plan-name">Red Pill</div>
+                    <div class="plan-price">$15<span>/month</span></div>
+                    <ul class="plan-features">
+                        <li>Everything in Rabbit Hole</li>
+                        <li>Custom prompt scheduling</li>
+                        <li>AI-powered insights</li>
+                        <li>Personalized follow-ups</li>
+                        <li>Priority support</li>
+                        <li>Export to Notion, Day One</li>
+                    </ul>
+                    <button class="plan-cta" onclick="scrollToSignup()">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        How does email journaling work?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        You'll receive prompts from Morpheus directly in your inbox at your chosen frequency. Simply hit reply and write your response. Your reflection is automatically saved to your account, organized, and accessible anytime through our web portal.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Can I change my email frequency?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! You can change your delivery schedule anytime from your preferences page. Choose daily, 3x per week, weekly, or create a custom schedule. You can also pause deliveries when needed.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Are my journal entries private?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, completely. Your reflections are private by default and encrypted. Only you can access them. You can choose to share specific entries if you wish, but that's entirely optional.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        What if I miss a prompt?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        No pressure! All prompts remain in your inbox archive. You can respond to them anytime, even weeks later. We'll gently remind you of unanswered prompts, but there's no penalty for skipping.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Can I cancel anytime?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Of course. Cancel your subscription anytime with one click. You'll retain access until the end of your billing period, and you can export all your journal entries before canceling.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="mailto:morpheus@followthewhiterabbit.com">Contact</a>
+            </div>
+            <p class="copyright">
+                © 2024 Follow the White Rabbit. All rights reserved.<br>
+                "The answer is out there, Neo, and it's looking for you..."
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Form submission
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                frequency: document.getElementById('frequency').value
+            };
+
+            // Here you would send to your backend
+            console.log('Form submitted:', formData);
+
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+
+            // Reset form
+            e.target.reset();
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 5000);
+        });
+
+        // FAQ toggle
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // Scroll to signup
+        function scrollToSignup() {
+            document.querySelector('.signup-form').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+            document.getElementById('email').focus();
+        }
+    </script>
+</body>
+</html>
